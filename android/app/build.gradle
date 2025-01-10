@@ -1,0 +1,60 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services'"
+}
+
+android {
+    namespace = "com.example.sharpens"
+    compileSdk = 34  // Match your setup for latest compile SDK
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21  // Set to Java 21 for compatibility
+        targetCompatibility = JavaVersion.VERSION_21  // Set to Java 21 for compatibility
+    }
+
+   // kotlinOptions {
+     //   jvmTarget = "21"  // Set to Java 21 for Kotlin compatibility (was set to 17, now changed to 21)
+    //}
+
+    defaultConfig {
+        applicationId = "com.example.sharpens"
+        minSdk = 21  // Min SDK version 21, compatible with Firebase
+        targetSdk = 34  // Target SDK version 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    ndkVersion = "25.2.9519653"  // Update this to your NDK version, if needed
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.10.1'  // Core KTX libraries for Android
+    implementation 'com.google.android.material:material:1.9.0'  // Material Design Components
+
+    // Firebase dependencies (adjust versions as needed)
+    implementation 'com.google.firebase:firebase-core:21.1.0'
+    implementation 'com.google.firebase:firebase-auth:22.0.1'
+    implementation 'com.google.firebase:firebase-firestore:24.0.0'
+    implementation 'com.google.firebase:firebase-messaging:23.1.0'
+
+    // Other dependencies, add more as necessary
+    implementation 'com.android.support:appcompat-v7:28.0.0'  // Add support for AppCompat if required
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'  // Retrofit for networking
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'  // OkHttp for HTTP requests
+
+    // Flutter plugin dependency, automatically handled by the Flutter Gradle plugin
+    // You don't need to manually add flutter_embedding here, it will be handled by the Flutter tool
+}
+
+  // Ensure Google services plugin is applied for Firebase
